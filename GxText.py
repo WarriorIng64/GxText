@@ -30,7 +30,7 @@ button_load = Button(hbox_top_buttons, window, "Load", "print 'GxText: Load butt
 button_load.RequestWidth(64)
 emptyspace = EmptyWidget(hbox_top_buttons, window)
 button_run = Button(hbox_top_buttons, window, "Run", "print 'GxText: Run button clicked.'")
-button_load.RequestWidth(64)
+button_run.RequestWidth(64)
 window.AddWidget(button_save, hbox_top_buttons)
 window.AddWidget(button_load, hbox_top_buttons)
 window.AddWidget(emptyspace, hbox_top_buttons)
