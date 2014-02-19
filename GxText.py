@@ -33,5 +33,5 @@ window.AddWidget(button_save, hbox_top_buttons)
 window.AddWidget(button_load, hbox_top_buttons)
 window.AddWidget(emptyspace, hbox_top_buttons)
 
-text_area = TextBox(vbox1, window, "There will be editable text in here soon.")
+text_area = TextEntryBox(vbox1, window, "This text should be editable.")
 window.AddWidget(text_area, vbox1)
