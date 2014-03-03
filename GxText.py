@@ -38,3 +38,5 @@ window.AddWidget(button_run, hbox_top_buttons)
 
 text_area = TextEntryMonoBox(vbox1, window, "Left-click this area to focus the text box and begin typing.")
 window.AddWidget(text_area, vbox1)
+
+button_run.SetClickCode("parent_window.wm.RunString(" + text_area.GetText() + ")")
