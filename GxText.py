@@ -26,7 +26,7 @@ self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 
 load_code = """
 print '***GxText: Load button clicked.'
-self.parent_window.wm.ShowPopupMessage('GxText', 'You clicked the Save button.')
+self.parent_window.wm.ShowPopupMessage('GxText', 'You clicked the Load button.')
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
