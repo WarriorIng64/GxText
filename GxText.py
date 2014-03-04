@@ -20,11 +20,13 @@
 # TODO: Make the Save and Load buttons actually do what they're supposed to.
 save_code = """
 print '***GxText: Save button clicked.'
+self.parent_window.wm.ShowPopupMessage('GxText', 'You clicked the Save button.')
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
 load_code = """
 print '***GxText: Load button clicked.'
+self.parent_window.wm.ShowPopupMessage('GxText', 'You clicked the Save button.')
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
@@ -33,8 +35,10 @@ try:
   self.parent_window.wm.RunString(self.parent_window.code_entry.GetText())
 except SyntaxError as e:
   print "***GxText: SyntaxError in entered app code: ", e
+  self.parent_window.wm.ShowPopupMessage('GxText: SyntaxError', e)
 except Exception as e:
   print "***GxText: Unhandled app code execution error: ", e
+  self.parent_window.wm.ShowPopupMessage('GxText: Exception', e)
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
