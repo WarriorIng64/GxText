@@ -44,8 +44,8 @@ try:
   self.parent_window.wm.RunString(self.parent_window.code_entry.GetText())
 except SyntaxError as e:
   print "***GxText: SyntaxError: ", e
-except:
-  print "***GxText: Unhandled app code execution error."
+except Exception as e:
+  print "***GxText: Unhandled app code execution error: ", e
 """
 
 button_run.SetClickCode(run_code)
