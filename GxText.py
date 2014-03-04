@@ -35,10 +35,10 @@ try:
   self.parent_window.wm.RunString(self.parent_window.code_entry.GetText())
 except SyntaxError as e:
   print "***GxText: SyntaxError in entered app code: ", e
-  self.parent_window.wm.ShowPopupMessage('GxText: SyntaxError', e)
+  self.parent_window.wm.ShowPopupMessage('GxText: SyntaxError', str(e))
 except Exception as e:
   print "***GxText: Unhandled app code execution error: ", e
-  self.parent_window.wm.ShowPopupMessage('GxText: Exception', e)
+  self.parent_window.wm.ShowPopupMessage('GxText: Exception', str(e))
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
