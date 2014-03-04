@@ -19,13 +19,13 @@
 
 # TODO: Make the Save and Load buttons actually do what they're supposed to.
 save_code = """
-  print '***GxText: Save button clicked.'
-  self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
+print '***GxText: Save button clicked.'
+self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
 load_code = """
-  print '***GxText: Load button clicked.'
-  self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
+print '***GxText: Load button clicked.'
+self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
 run_code = """
