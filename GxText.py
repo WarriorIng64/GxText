@@ -14,6 +14,32 @@
 # You should have received a copy of the GNU General Public License
 # along with GxText. If not, see <http://www.gnu.org/licenses/>.
 
+
+# Code for Buttons--------------------------------------------------------------
+
+# TODO: Make the Save and Load buttons actually do what they're supposed to.
+save_code = """
+  print '***GxText: Save button clicked.'
+  self.parent_window.code_entry.SetAsFocusedWidget()
+"""
+
+load_code = """
+  print '***GxText: Load button clicked.'
+  self.parent_window.code_entry.SetAsFocusedWidget()
+"""
+
+run_code = """
+try:
+  self.parent_window.wm.RunString(self.parent_window.code_entry.GetText())
+except SyntaxError as e:
+  print "***GxText: SyntaxError in entered app code: ", e
+except Exception as e:
+  print "***GxText: Unhandled app code execution error: ", e
+self.parent_window.code_entry.SetAsFocusedWidget()
+"""
+
+# Window and UI code------------------------------------------------------------
+
 window = self.CreateWindow(48, 0, 400, 600, 'GxText')
 window.SetIcon("apps/default/GxText/")
 
@@ -24,28 +50,18 @@ hbox_top_buttons = HBox(vbox1, window, [])
 hbox_top_buttons.RequestHeight(32)
 window.AddWidget(hbox_top_buttons, vbox1)
 
-button_save = Button(hbox_top_buttons, window, "Save", "print 'GxText: Save button clicked.'")
+button_save = Button(hbox_top_buttons, window, "Save", save_code)
 button_save.RequestWidth(64)
-button_load = Button(hbox_top_buttons, window, "Load", "print 'GxText: Load button clicked.'")
+button_load = Button(hbox_top_buttons, window, "Load", load_code)
 button_load.RequestWidth(64)
 emptyspace = EmptyWidget(hbox_top_buttons, window)
-button_run = Button(hbox_top_buttons, window, "Run", "print 'GxText: Run button clicked.'")
-button_run.RequestWidth(64)
+window.button_run = Button(hbox_top_buttons, window, "Run", run_code)
+window.button_run.RequestWidth(64)
 window.AddWidget(button_save, hbox_top_buttons)
 window.AddWidget(button_load, hbox_top_buttons)
 window.AddWidget(emptyspace, hbox_top_buttons)
-window.AddWidget(button_run, hbox_top_buttons)
+window.AddWidget(window.button_run, hbox_top_buttons)
 
-window.code_entry = TextEntryMonoBox(vbox1, window, "Left-click this area to focus the text box and begin typing.")
+window.code_entry = TextEntryMonoBox(vbox1, window, "")
 window.AddWidget(window.code_entry, vbox1)
-
-run_code = """
-try:
-  self.parent_window.wm.RunString(self.parent_window.code_entry.GetText())
-except SyntaxError as e:
-  print "***GxText: SyntaxError: ", e
-except Exception as e:
-  print "***GxText: Unhandled app code execution error: ", e
-"""
-
-button_run.SetClickCode(run_code)
+window.code_entry.SetAsFocusedWidget()
