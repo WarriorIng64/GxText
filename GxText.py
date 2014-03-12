@@ -27,6 +27,9 @@ self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 load_code = """
 print '***GxText: Load button clicked.'
 self.parent_window.wm.ShowPopupMessage('GxText', 'You clicked the Load button.')
+with open('apps/default/GxText/GxText.py", "r") as load_file:
+  loaded_code_string = load_file.read()
+  self.parent_window.code_entry.SetText(loaded_code_string)
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
