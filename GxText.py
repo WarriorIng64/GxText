@@ -40,12 +40,14 @@ try:
 except SyntaxError as e:
   import traceback
   line_number = traceback.extract_tb((sys.exc_info()[2], 1)[1]
-  print "***GxText: SyntaxError in entered app code: ", e, " (Line ", str(line_number), ")"
+  line_number_text = "(Line " + str(line_number) + ")"
+  print "***GxText: SyntaxError in entered app code: ", e, line_number_text
   self.parent_window.wm.ShowPopupMessage('GxText: SyntaxError', str(e))
 except Exception as e:
   import traceback
   line_number = traceback.extract_tb((sys.exc_info()[2], 1)[1]
-  print "***GxText: Unhandled app code execution error: ", e, " (Line ", str(line_number), ")"
+  line_number_text = "(Line " + str(line_number) + ")"
+  print "***GxText: SyntaxError in entered app code: ", e, line_number_text
   self.parent_window.wm.ShowPopupMessage('GxText: Exception', str(e))
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
