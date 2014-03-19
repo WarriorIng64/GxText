@@ -70,6 +70,6 @@ window.AddWidget(button_load, hbox_top_buttons)
 window.AddWidget(emptyspace, hbox_top_buttons)
 window.AddWidget(window.button_run, hbox_top_buttons)
 
-window.code_entry = TextEntryMonoBox(vbox1, window, "")
+window.code_entry = TextEntryCodeBox(vbox1, window, "")
 window.AddWidget(window.code_entry, vbox1)
 window.code_entry.SetAsFocusedWidget(window.code_entry)
