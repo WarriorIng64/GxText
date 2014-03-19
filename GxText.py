@@ -43,14 +43,14 @@ except SyntaxError as e:
     line_number = frame[1]
   line_number_text = "(Line " + str(line_number) + ")"
   print "***GxText: SyntaxError in entered app code: ", e, line_number_text
-  self.parent_window.wm.ShowPopupMessage('GxText: SyntaxError', str(e))
+  self.parent_window.wm.ShowPopupMessage('GxText: SyntaxError', str(e) + " " + line_number_text)
 except Exception as e:
   import traceback
   for frame in traceback.extract_tb(sys.exc_info()[2]):
     line_number = frame[1]
   line_number_text = "(Line " + str(line_number) + ")"
   print "***GxText: SyntaxError in entered app code: ", e, line_number_text
-  self.parent_window.wm.ShowPopupMessage('GxText: Exception', str(e))
+  self.parent_window.wm.ShowPopupMessage('GxText: Exception', str(e) + " " + line_number_text)
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
