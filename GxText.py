@@ -22,6 +22,7 @@ save_code = """
 print '***GxText: Save button clicked.'
 self.parent_window.wm.ShowPopupMessage('GxText', 'You clicked the Save button.')
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
+self.parent_window.SetTitlebarText('GxText: ' + parent_window.file_name)
 """
 
 load_code = """
@@ -32,6 +33,7 @@ with open('apps/default/GxText/GxText.py', 'r') as load_file:
   self.parent_window.code_entry.SetText(loaded_code_string)
 self.parent_window.code_entry.multiline.SetCursorAtBeginning()
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
+self.parent_window.SetTitlebarText('GxText: ' + parent_window.file_name + '*')
 """
 
 run_code = """
@@ -58,7 +60,7 @@ self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 
 # Window and UI code------------------------------------------------------------
 
-window = self.CreateWindow(48, 0, 400, 600, 'GxText')
+window = self.CreateWindow(48, 0, 400, 600, 'GxText: <New file>')
 window.SetIcon("apps/default/GxText/")
 
 vbox1 = VBox(window.top_level_container, window, [])
@@ -83,3 +85,5 @@ window.AddWidget(window.button_run, hbox_top_buttons)
 window.code_entry = TextEntryCodeBox(vbox1, window, "")
 window.AddWidget(window.code_entry, vbox1)
 window.code_entry.SetAsFocusedWidget(window.code_entry)
+
+window.file_name = "<New file>"
