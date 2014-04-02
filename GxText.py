@@ -61,7 +61,7 @@ self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 
 gxtext_frame_code = """
 cursor_pos = self.code_entry.multiline.GetCursorPosition()
-cursor_pos_string = "Line " + str(cursor_pos[0]) + ", Column " + str(cursor_pos[1])
+cursor_pos_string = "Line " + str(cursor_pos[0] + 1) + ", Column " + str(cursor_pos[1])
 self.SetStatusbarText(cursor_pos_string)
 """
 
