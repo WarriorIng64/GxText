@@ -80,7 +80,7 @@ hbox_top_buttons.RequestHeight(32)
 window.AddWidget(hbox_top_buttons, vbox1)
 
 window.file_entry = TextEntrySinglelineBox(vbox1, window, "apps/default/GxText/GxText.py")
-window.AddWidget(file_entry, vbox1)
+window.AddWidget(window.file_entry, vbox1)
 
 button_save = Button(hbox_top_buttons, window, "Save", save_code)
 button_save.RequestWidth(64)
