@@ -18,6 +18,7 @@
 # Code for Buttons--------------------------------------------------------------
 
 save_code = """
+import os
 dir = os.path.dirname(self.parent_window.file_entry.GetText())
 if not os.path.exists(dir):
   os.makedirs(dir)
