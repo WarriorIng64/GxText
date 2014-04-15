@@ -17,22 +17,24 @@
 
 # Code for Buttons--------------------------------------------------------------
 
-# TODO: Make the Save and Load buttons actually do what they're supposed to.
 save_code = """
 print '***GxText: Save button clicked.'
-self.parent_window.wm.ShowPopupMessage('GxText', 'You clicked the Save button.')
+with open(self.parent_window.file_entry.GetText(), 'w+') as save_file:
+  window.file_name = save_file.name
+  save_file.write(self.parent_window.code_entry.GetText())
+  self.parent_window.SetTitlebarText('GxText: ' + save_file.name)
+  self.parent_window.wm.ShowPopupMessage('GxText', 'File saved to ' + self.parent_window.file_entry.GetText() + '.')
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
-self.parent_window.SetTitlebarText('GxText: ' + self.parent_window.file_name)
 """
 
 load_code = """
 print '***GxText: Load button clicked.'
-self.parent_window.wm.ShowPopupMessage('GxText', 'You clicked the Load button.')
-with open('apps/default/GxText/GxText.py', 'r') as load_file:
+with open(self.parent_window.file_entry.GetText(), 'r') as load_file:
   loaded_code_string = load_file.read()
   self.parent_window.code_entry.SetText(loaded_code_string)
-  self.parent_window.file_name = 'GxText.py'
-  self.parent_window.SetTitlebarText('GxText: ' + self.parent_window.file_name + '*')
+  self.parent_window.file_name = load_file.name
+  self.parent_window.SetTitlebarText('GxText: ' + load_file.name + '*')
+  self.parent_window.wm.ShowPopupMessage('GxText', 'File loaded from ' + self.parent_window.file_entry.GetText() + '.')
 self.parent_window.code_entry.multiline.SetCursorAtBeginning()
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
@@ -77,7 +79,7 @@ hbox_top_buttons = HBox(vbox1, window, [])
 hbox_top_buttons.RequestHeight(32)
 window.AddWidget(hbox_top_buttons, vbox1)
 
-file_entry = TextEntrySinglelineBox(vbox1, window, "apps/default/GxText/GxText.py")
+window.file_entry = TextEntrySinglelineBox(vbox1, window, "apps/default/GxText/GxText.py")
 window.AddWidget(file_entry, vbox1)
 
 button_save = Button(hbox_top_buttons, window, "Save", save_code)
