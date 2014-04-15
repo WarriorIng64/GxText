@@ -18,21 +18,32 @@
 # Code for Buttons--------------------------------------------------------------
 
 save_code = """
-with open(self.parent_window.file_entry.GetText(), 'w+') as save_file:
-  self.parent_window.file_name = save_file.name
-  save_file.write(self.parent_window.code_entry.GetText())
-  self.parent_window.SetTitlebarText('GxText: ' + save_file.name)
-  self.parent_window.wm.ShowPopupMessage('GxText', 'File saved to ' + self.parent_window.file_entry.GetText() + '.')
+dir = os.path.dirname(self.parent_window.file_entry.GetText())
+if not os.path.exists(dir):
+  os.makedirs(dir)
+try:
+  with open(self.parent_window.file_entry.GetText(), 'w+') as save_file:
+    self.parent_window.file_name = save_file.name
+    save_file.write(self.parent_window.code_entry.GetText())
+    self.parent_window.SetTitlebarText('GxText: ' + save_file.name)
+    self.parent_window.wm.ShowPopupMessage('GxText', 'File saved to ' + self.parent_window.file_entry.GetText() + '.')
+except IOError as e:
+  self.parent_window.wm.ShowPopupMessage('Error', self.parent_window.file_entry.GetText() + ' could not be saved.')
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
 load_code = """
-with open(self.parent_window.file_entry.GetText(), 'r') as load_file:
-  loaded_code_string = load_file.read()
-  self.parent_window.code_entry.SetText(loaded_code_string)
-  self.parent_window.file_name = load_file.name
-  self.parent_window.SetTitlebarText('GxText: ' + load_file.name + '*')
-  self.parent_window.wm.ShowPopupMessage('GxText', 'File loaded from ' + self.parent_window.file_entry.GetText() + '.')
+backup = self.parent_window.code_entry.GetText()
+try:
+  with open(self.parent_window.file_entry.GetText(), 'r') as load_file:
+    loaded_code_string = load_file.read()
+    self.parent_window.code_entry.SetText(loaded_code_string)
+    self.parent_window.file_name = load_file.name
+    self.parent_window.SetTitlebarText('GxText: ' + load_file.name + '*')
+    self.parent_window.wm.ShowPopupMessage('GxText', 'File loaded from ' + self.parent_window.file_entry.GetText() + '.')
+except IOError as e:
+  self.parent_window.wm.ShowPopupMessage('Error', self.parent_window.file_entry.GetText() + ' does not exist.')
+  self.parent_window.code_entry.SetText(backup)
 self.parent_window.code_entry.multiline.SetCursorAtBeginning()
 self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
