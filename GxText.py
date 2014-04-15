@@ -18,7 +18,6 @@
 # Code for Buttons--------------------------------------------------------------
 
 save_code = """
-print '***GxText: Save button clicked.'
 with open(self.parent_window.file_entry.GetText(), 'w+') as save_file:
   self.parent_window.file_name = save_file.name
   save_file.write(self.parent_window.code_entry.GetText())
@@ -28,7 +27,6 @@ self.parent_window.code_entry.SetAsFocusedWidget(self.parent_window.code_entry)
 """
 
 load_code = """
-print '***GxText: Load button clicked.'
 with open(self.parent_window.file_entry.GetText(), 'r') as load_file:
   loaded_code_string = load_file.read()
   self.parent_window.code_entry.SetText(loaded_code_string)
