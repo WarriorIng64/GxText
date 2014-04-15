@@ -20,7 +20,7 @@
 save_code = """
 print '***GxText: Save button clicked.'
 with open(self.parent_window.file_entry.GetText(), 'w+') as save_file:
-  window.file_name = save_file.name
+  self.parent_window.file_name = save_file.name
   save_file.write(self.parent_window.code_entry.GetText())
   self.parent_window.SetTitlebarText('GxText: ' + save_file.name)
   self.parent_window.wm.ShowPopupMessage('GxText', 'File saved to ' + self.parent_window.file_entry.GetText() + '.')
